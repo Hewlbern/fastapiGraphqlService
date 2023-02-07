@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+    web:
+        build: .
+        ports:
+          - 8008:8008
+        env_file:
+          - .env
+    tests:
+        build:
+          context: .
+          dockerfile: testing.Dockerfile
+        command: pytest
+        depends_on:
+        - web
